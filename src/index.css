@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #004ac6;
+
+  --color-dark: #0b132a;
+  --color-gray: #e2e8f0;
+  --color-dark-gray: #475569;
+  --color-accent-1: #ffdbcd;
+  --color-accent-2: #acbfff;
+  --color-red: #ba1a1a;
+}
+
+@layer utilities {
+  .container {
+    padding: 16px 56px;
+    max-width: 1440px;
+    margin: auto;
+
+    @media (max-width: 600px) {
+      padding: 24px 24px;
+    }
+  }
+
+  .section-container {
+    padding: 36px 56px;
+    max-width: 1440px;
+    margin: auto;
+
+    @media (max-width: 600px) {
+      padding: 52px 24px;
+    }
+  }
+}
