@@ -1,6 +1,6 @@
 import { IoMdSearch } from "react-icons/io";
 import LinkCard from "../components/LinkCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserLink } from "../redux/slices/userSlice";
 import { useSearchParams } from "react-router";
@@ -19,7 +19,14 @@ const DashboardPage = () => {
         params = slug;
       }
 
-      dispatch(getUserLink({ params: `?slug=${params}` }));
+      const debounce = setTimeout(
+        () => {
+          dispatch(getUserLink({ params: `?slug=${params}` }));
+        },
+        params ? 1000 : 0,
+      );
+
+      return () => clearTimeout(debounce);
     })();
   }, [dispatch, slug]);
   return (
@@ -43,6 +50,7 @@ const DashboardPage = () => {
           <div className="flex items-center gap-2 bg-white p-3 rounded-lg text-sm shadow-sm">
             <IoMdSearch className="text-xl text-dark-gray" />
             <input
+            value={slug}
               onChange={(e) => {
                 const newParams = new URLSearchParams(searchParams);
 
