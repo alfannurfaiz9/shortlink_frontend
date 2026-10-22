@@ -1,21 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { registerThunk } from "../../redux/slices/authSlice";
+import { toast } from "react-toastify";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const RegisterPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const auth = useSelector((state) => state.authState);
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(
+      registerThunk({
+        data: {
+          email: data.email,
+          full_name: data.full_name,
+          password: data.password,
+        },
+        next: (message) => {
+          toast.success(message);
+          navigate("/auth/login");
+        },
+      }),
+    );
   };
+
+  useEffect(() => {
+    (() => {
+      if (auth.isPending) {
+        setLoading(true);
+      } else {
+        setLoading(false);
+      }
+    })();
+
+    if (auth.isRejected) {
+      setError("email", {
+        type: "manual",
+        message: auth.error,
+      });
+
+      return;
+    }
+  }, [auth, setError]);
 
   return (
     <section className="container bg-primary/5 h-svh flex flex-col items-center justify-center">
@@ -43,7 +84,21 @@ const RegisterPage = () => {
             />
             <p className="text-xs text-red-500 h-2">{errors.email?.message}</p>
           </div>
-
+          <div className="grid">
+            <label htmlFor="full_name">Fullname</label>
+            <input
+              {...register("full_name", {
+                required: "Full name is required",
+              })}
+              id="full_name"
+              type="text"
+              placeholder="Enter Your Fullname"
+              className="outline-none w-full border border-gray/80 p-2 rounded-lg"
+            />
+            <p className="text-xs text-red-500 h-2">
+              {errors.full_name?.message}
+            </p>
+          </div>
           <div className="grid">
             <div className="flex items-center justify-between">
               <label htmlFor="password">Password</label>
@@ -74,7 +129,6 @@ const RegisterPage = () => {
               {errors.password?.message}
             </p>
           </div>
-
           <div className="grid">
             <div className="flex items-center justify-between">
               <label htmlFor="confirm_password">Confirm Password</label>
@@ -105,12 +159,14 @@ const RegisterPage = () => {
               {errors.confirm_password?.message}
             </p>
           </div>
-
           <button
             type="submit"
-            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm"
+            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center"
           >
-            Register
+            <AiOutlineLoading3Quarters
+              className={`${loading ? "block" : "hidden"} text-lg animate-spin`}
+            />
+            {loading ? "" : "Register"}
           </button>
         </form>
       </div>

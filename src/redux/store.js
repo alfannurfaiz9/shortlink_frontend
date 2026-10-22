@@ -39,6 +39,14 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
+      ignoredActionPaths: [
+        "payload.next",
+        "meta.arg.next",
+        "payload",
+        "meta.arg.body",
+        "meta.arg.nextErr",
+        "meta.arg.setErr",
+      ],
     }),
 });
 

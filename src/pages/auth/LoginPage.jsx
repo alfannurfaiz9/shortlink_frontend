@@ -1,19 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { loginThunk } from "../../redux/slices/authSlice";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const auth = useSelector((state) => state.authState);
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    (() => {
+      if (auth.isPending) {
+        setLoading(true);
+      } else {
+        setLoading(false);
+      }
+    })();
+
+    if (auth.isRejected) {
+      setError("email", {
+        type: "manual",
+        message: auth.error,
+      });
+
+      return;
+    }
+  }, [auth, setError]);
+
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(
+      loginThunk({
+        data,
+        next: (message) => {
+          toast.success(message);
+          navigate("/dashboard");
+        },
+      }),
+    );
   };
 
   return (
@@ -40,7 +77,6 @@ const LoginPage = () => {
               placeholder="Enter Your Email"
               className="outline-none w-full border border-gray/80 p-2 rounded-lg"
             />
-            <p className="text-xs text-red-500 h-2">{errors.email?.message}</p>
           </div>
 
           <div className="grid">
@@ -75,16 +111,16 @@ const LoginPage = () => {
                 )}
               </button>
             </div>
-            <p className="text-xs text-red-500 h-2">
-              {errors.password?.message}
-            </p>
           </div>
-
+          <p className="text-xs text-red-500 h-2">{errors.email?.message}</p>
           <button
             type="submit"
-            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm"
+            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center"
           >
-            Log In
+            <AiOutlineLoading3Quarters
+              className={`${loading ? "block" : "hidden"} text-lg animate-spin`}
+            />
+            {loading ? "" : "Log In"}
           </button>
         </form>
       </div>

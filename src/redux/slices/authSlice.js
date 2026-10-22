@@ -27,7 +27,7 @@ export const registerThunk = createAsyncThunk(
         throw data;
       }
 
-      return { message: data.message, next: payload.next };
+      return { Message: data.message, next: payload.next };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -123,14 +123,13 @@ const authSlice = createSlice({
           state.isRejected = false;
         },
         fulfilled: (state, { payload }) => {
-          state.auth = { token: payload.data.data.token };
+          state.auth = { token: payload.data.result.token };
           state.isPending = false;
+          console.log(payload.data)
           state.isFulfilled = true;
-          state.isHasPin = payload.data.data.is_has_pin;
           if (payload.next) {
             payload.next(
               upperCaseResponse(payload.data),
-              payload.data.data.is_has_pin,
             );
           }
         },
