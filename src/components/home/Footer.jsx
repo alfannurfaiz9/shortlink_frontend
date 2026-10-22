@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="container font-semibold text-dark-gray text-sm bg-gray/30 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0">
+    <footer className="container text-xs font-semibold text-dark-gray bg-gray/30 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-0">
       <p>© 2024 ShortLink. The Digital Architect.</p>
       <nav className="hidden lg:flex flex-col lg:flex-row gap-4 list-none">
         <li>

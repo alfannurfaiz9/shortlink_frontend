@@ -13,14 +13,17 @@ const initialState = {
 
 export const getUserLink = createAsyncThunk(
   "get_user_link",
-  async (_, { dispatch, getState, rejectWithValue }) => {
+  async (payload, { dispatch, getState, rejectWithValue }) => {
     const token = getState().authState.auth.token;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/links`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/links${payload.params}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       const data = await response.json();
 
       if (response.status === 401) {
@@ -90,7 +93,7 @@ export const deleteLink = createAsyncThunk(
         throw { data, setErr: payload.setErr };
       }
 
-      dispatch(getUserLink());
+      dispatch(getUserLink({ params: "" }));
 
       return { data, next: payload.next };
     } catch (error) {
