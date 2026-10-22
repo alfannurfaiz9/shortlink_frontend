@@ -55,10 +55,11 @@ const LoginPage = () => {
 
   return (
     <section className="container bg-primary/5 h-svh flex flex-col items-center justify-center">
-      <div className="lg:w-4/12 lg:h-fit w-full px-6 py-12 flex flex-col items-center justify-center gap-8 bg-white lg:mt-16 mb-4 lg:p-8 rounded-lg shadow-sm">
-        <div className="text-center">
-          <h2 className="text-xl font-bold">Welcome Back</h2>
-          <p className="text-dark-gray">
+      <div className="lg:w-4/12 p-8 lg:h-fit w-full  py-12 flex flex-col items-center justify-center gap-8 bg-white lg:mt-16 mb-4 lg:p-8 rounded-lg shadow-sm">
+        <img src="/logo.svg" alt="logo" />
+        <div className="text-left w-full">
+          <h2 className="text-lg font-bold">Welcome Back</h2>
+          <p className="text-dark-gray text-sm">
             Please enter your details to sign in.
           </p>
         </div>

@@ -61,7 +61,7 @@ export const loginThunk = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk(
   "logout",
-  async (payload, { getState, rejectWithValue }) => {
+  async (payload, { dispatch, getState, rejectWithValue }) => {
     const token = getState().authState.auth.token;
 
     try {
@@ -74,6 +74,10 @@ export const logoutThunk = createAsyncThunk(
           },
         },
       );
+
+      if (response.status === 401) {
+        dispatch(clearToken());
+      }
 
       if (!response.ok) {
         throw await response.json();

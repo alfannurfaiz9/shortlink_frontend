@@ -8,7 +8,7 @@ export const navLinks = [
     title: "Analytics",
   },
   {
-    link: "/links",
+    link: "/create",
     title: "Links",
   },
 ];

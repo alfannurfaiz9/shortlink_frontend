@@ -68,8 +68,8 @@ const RegisterPage = () => {
   }, [auth, setError]);
 
   return (
-    <section className="container bg-primary/5 h-svh flex flex-col items-center justify-center">
-      <div className="lg:w-4/12 lg:h-fit w-full px-6 py-12 flex flex-col items-center justify-center gap-8 bg-white lg:mt-16 mb-4 lg:p-8 rounded-lg shadow-sm">
+    <section className="container bg-primary/5 h-svh lg:h-fit p-4 flex flex-col items-center justify-center">
+      <div className="lg:w-4/12 lg:h-fit w-full px-6 py-8 flex flex-col items-center justify-center gap-8 bg-white lg:mt-16 mb-4 lg:p-8 rounded-lg shadow-sm">
         <div className="text-center">
           <h2 className="text-xl font-bold">Create Account</h2>
           <p className="text-dark-gray">
@@ -179,7 +179,7 @@ const RegisterPage = () => {
           </button>
         </form>
       </div>
-      <p>
+      <p className="lg:mb-32">
         Already have account?
         <Link to="/auth/login" className="ml-2 text-primary hover:underline">
           Sign In

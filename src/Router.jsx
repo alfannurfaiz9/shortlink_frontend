@@ -6,6 +6,9 @@ import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 import DashboardPage from "./pages/DashboardPage";
+import CreateLink from "./pages/CreateLink";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const Router = () => {
   return (
@@ -22,7 +25,10 @@ const Router = () => {
         <Route path="home" element={<HomePage />} />
 
         <Route element={<ProtectedLayout />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="create" element={<CreateLink />} />
+          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
       </Route>
     </Routes>

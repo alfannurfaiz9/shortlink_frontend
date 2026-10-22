@@ -4,8 +4,26 @@ import { IoMdLink } from "react-icons/io";
 import { IoBarChartSharp, IoCopy } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { Link } from "react-router";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { deleteLink } from "../redux/slices/userSlice.js";
 
-const LinkCard = ({ slug, original_url, created_at }) => {
+const LinkCard = ({ id, slug, original_url, created_at }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(
+      deleteLink({
+        id,
+        next: (message) => {
+          toast.success(message);
+        },
+        setErr: (message) => {
+          toast.error(message);
+        },
+      }),
+    );
+  };
   return (
     <article className="bg-white rounded-lg shadow-sm p-4 flex items-center justify-between flex-wrap">
       <div className="grid gap-2 ">
@@ -30,7 +48,10 @@ const LinkCard = ({ slug, original_url, created_at }) => {
       </div>
       <div className="mt-4 lg:my-0 flex gap-4 lg:gap-6 text-xl text-dark-gray items-center justify-center">
         <IoCopy className="cursor-pointer hover:opacity-80 p-2 text-4xl text-dark/60 bg-accent-2/40 rounded-lg lg:text-4xl" />
-        <FaTrashAlt className="cursor-pointer hover:opacity-80" />
+        <FaTrashAlt
+          onClick={handleDelete}
+          className="cursor-pointer hover:opacity-80"
+        />
       </div>
     </article>
   );
