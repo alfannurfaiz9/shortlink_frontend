@@ -1,5 +1,22 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router";
+
 const ProtectedLayout = () => {
-  return <div>ProtectedLayout</div>;
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.authState.auth.token);
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate, token]);
+
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default ProtectedLayout;

@@ -68,19 +68,18 @@ export const logoutThunk = createAsyncThunk(
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/auth/logout`,
         {
-          method: "DELETE",
+          method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
       );
-      const data = await response.json();
 
       if (!response.ok) {
-        throw data;
+        throw await response.json();
       }
 
-      return { data, next: payload.next };
+      return { next: payload.next };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -146,7 +145,7 @@ const authSlice = createSlice({
           state.isPending = false;
           state.isFulfilled = true;
           if (payload.next) {
-            payload.next(upperCaseResponse(payload.data));
+            payload.next("Successfully loged out");
           }
           state.auth = null;
         },
