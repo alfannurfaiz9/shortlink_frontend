@@ -9,6 +9,7 @@ import DashboardPage from "./pages/DashboardPage";
 import CreateLink from "./pages/CreateLink";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import ProfilePage from "./pages/ProfilePage";
+import NotFound from "./pages/NotFound";
 
 const Router = () => {
   return (
@@ -31,6 +32,8 @@ const Router = () => {
           <Route path="profile" element={<ProfilePage />} />
         </Route>
       </Route>
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
