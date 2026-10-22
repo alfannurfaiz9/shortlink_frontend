@@ -51,7 +51,7 @@ const CreateLink = () => {
     })();
   }, [auth, setError]);
   return (
-    <section className="lg:py-12 px-8 py-32 h-svh lg:h-fit bg-dark-gray/30">
+    <section className="lg:py-12 px-8 py-32 h-svh lg:h-fit bg-dark-gray/10">
       <div className="lg:w-5/12 mx-auto grid gap-2">
         <Link to="/dashboard" className="text-primary font-semibold">
           Back to Dashboard
