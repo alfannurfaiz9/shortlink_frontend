@@ -4,6 +4,8 @@ import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
+import ProtectedLayout from "./layouts/ProtectedLayout";
+import DashboardPage from "./pages/DashboardPage";
 
 const Router = () => {
   return (
@@ -18,6 +20,10 @@ const Router = () => {
         <Route index path="/" element={<Navigate to="/home" replace />} />
         <Route index path="/" element={<Navigate to="/home" replace />} />
         <Route path="home" element={<HomePage />} />
+
+        <Route element={<ProtectedLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
       </Route>
     </Routes>
   );

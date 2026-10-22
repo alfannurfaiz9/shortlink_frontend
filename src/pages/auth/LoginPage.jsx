@@ -115,7 +115,7 @@ const LoginPage = () => {
           <p className="text-xs text-red-500 h-2">{errors.email?.message}</p>
           <button
             type="submit"
-            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center"
+            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center h-10"
           >
             <AiOutlineLoading3Quarters
               className={`${loading ? "block" : "hidden"} text-lg animate-spin`}

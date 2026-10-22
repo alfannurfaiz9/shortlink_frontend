@@ -27,7 +27,7 @@ export const registerThunk = createAsyncThunk(
         throw data;
       }
 
-      return { Message: data.message, next: payload.next };
+      return { message: data.message, next: payload.next };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -125,12 +125,9 @@ const authSlice = createSlice({
         fulfilled: (state, { payload }) => {
           state.auth = { token: payload.data.result.token };
           state.isPending = false;
-          console.log(payload.data)
           state.isFulfilled = true;
           if (payload.next) {
-            payload.next(
-              upperCaseResponse(payload.data),
-            );
+            payload.next(upperCaseResponse(payload.data));
           }
         },
         rejected: (state, { payload }) => {

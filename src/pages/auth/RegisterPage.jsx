@@ -24,6 +24,15 @@ const RegisterPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (data) => {
+    if (data.password !== data.confirm_password) {
+      setError("confirm_password", {
+        type: "manual",
+        message: "Password do not match",
+      });
+
+      return;
+    }
+
     dispatch(
       registerThunk({
         data: {
@@ -161,7 +170,7 @@ const RegisterPage = () => {
           </div>
           <button
             type="submit"
-            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center"
+            className="py-2 w-full bg-primary rounded-lg text-white cursor-pointer hover:opacity-80 hover:shadow-sm flex items-center justify-center h-10"
           >
             <AiOutlineLoading3Quarters
               className={`${loading ? "block" : "hidden"} text-lg animate-spin`}
