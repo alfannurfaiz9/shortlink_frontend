@@ -91,7 +91,7 @@ npm ci
 Create a `.env` file in the project root and point it to your backend:
 
 ```env
-VITE_API_URL=http://{HOST_SERVER}:{PORT_SERVER}
+VITE_API_URL=http://{HOST_SERVER_PORT_SERVER}
 ```
 
 Replace `{HOST_SERVER}` and `{PORT_SERVER}` with the values from your backend `.env`. Make sure the variable name matches the one used in the frontend source code.
