@@ -7,7 +7,6 @@
   <a href="https://reactrouter.com/"><img src="https://img.shields.io/badge/React_Router-ca4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" /></a>
   <a href="https://redux-toolkit.js.org/"><img src="https://img.shields.io/badge/Redux_Toolkit-764abc?style=for-the-badge&logo=redux&logoColor=white" alt="Redux Toolkit" /></a>
   <a href="https://react-hook-form.com/"><img src="https://img.shields.io/badge/React_Hook_Form-ec5990?style=for-the-badge&logo=reacthookform&logoColor=white" alt="React Hook Form" /></a>
-  <a href="https://www.chartjs.org/"><img src="https://img.shields.io/badge/Chart.js-ff6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js" /></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" /></a>
 </p>
 
@@ -28,10 +27,8 @@ The backend lives in a separate repository: [shortlink_backend](https://github.c
 | [React Redux](https://react-redux.js.org/)                  | 9.3.0   | Connects React components with the Redux store                 |
 | [Redux Persist](https://github.com/rt2zz/redux-persist)     | 6.0.0   | Persists selected Redux state across browser sessions          |
 | [React Hook Form](https://react-hook-form.com/)             | 7.90.0  | Form state and validation                                      |
-| [Chart.js](https://www.chartjs.org/)                        | 4.5.1   | Financial statistics and dashboard charts                      |
 | [React Icons](https://react-icons.github.io/react-icons/)   | 5.7.0   | Icons for the interface and interactive elements               |
 | [React Toastify](https://fkhadra.github.io/react-toastify/) | 11.1.0  | Notifications and feedback messages                            |
-| [Swiper](https://swiperjs.com/)                             | 14.3.0  | Responsive sliders and carousels                               |
 | [Node.js](https://nodejs.org/)                              | 24      | JavaScript runtime for the development tools and build process |
 
 ## Features
@@ -70,7 +67,7 @@ User -> React Router -> Page -> Components -> Redux Store -> Backend REST API
 
 - [Node.js](https://nodejs.org/) (v24 recommended) and npm
 - [Git](https://git-scm.com/)
-- The [backend](https://github.com/MGT06/e-wallet_backend) up and running
+- The [backend](https://github.com/alfannurfaiz9/shortlink_backend.git) up and running
 
 ### 1. Make sure to run the backend first
 
@@ -80,7 +77,7 @@ User -> React Router -> Page -> Components -> Redux Store -> Backend REST API
 
 ```bash
 git clone https://github.com/alfannurfaiz9/shortlink_frontend.git
-cd e-wallet_frontend
+cd shortlink_frontend
 ```
 
 ### 3. Install dependencies
